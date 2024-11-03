@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% from 'bootstrap5/form.html' import render_form %}
+{% block title %}Select Movie{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="heading">Select Movie</h1>
+  <p>
+      {% if dict %}
+        <ul class="list-group">
+            {% for movie in dict %}
+                <li class="list-group-item">
+                    <a href="{{ url_for('get_details',movie_id=movie['id']) }}">
+                        {{ movie['original_title'] }} - {{ movie['release_date'] }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No movies found for your search. Please try again.</p>
+    {% endif %}
+  </p>
+
+</div>
+{% endblock %}
